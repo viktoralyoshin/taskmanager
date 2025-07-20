@@ -11,11 +11,14 @@ type Server struct {
 	logger *logrus.Logger
 }
 
-func NewServer() *Server {
+func NewServer(config *Config) *Server {
 	logger := logrus.New()
 	return &Server{
 		logger: logger,
 		router: router.NewRouter(logger),
 	}
+}
 
+func NewLogger(config *Config) *logrus.Logger {
+	return nil
 }
