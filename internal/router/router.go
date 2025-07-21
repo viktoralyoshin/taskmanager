@@ -10,11 +10,13 @@ import (
 func NewRouter(logger *logrus.Logger) *mux.Router {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+	api := r.PathPrefix("/api").Subrouter()
+
+	api.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 		logger.Info("health: OK")
 	}).Methods(http.MethodGet)
 
-	return r
+	return api
 }

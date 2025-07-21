@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+	"github.com/viktoralyoshin/taskmanager/internal/config"
 	"github.com/viktoralyoshin/taskmanager/internal/router"
 )
 
@@ -11,7 +12,7 @@ type Server struct {
 	logger *logrus.Logger
 }
 
-func NewServer(config *Config) *Server {
+func NewServer(config *config.Config) *Server {
 	logger := logrus.New()
 	return &Server{
 		logger: logger,
@@ -19,6 +20,6 @@ func NewServer(config *Config) *Server {
 	}
 }
 
-func NewLogger(config *Config) *logrus.Logger {
+func NewLogger(config *config.Config) *logrus.Logger {
 	return nil
 }
