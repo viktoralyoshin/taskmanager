@@ -9,3 +9,5 @@ run: build
 
 test:
 	go test -race -cover -v ./...
+
+.DEFAULT_GOAL := run

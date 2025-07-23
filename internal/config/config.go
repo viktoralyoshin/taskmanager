@@ -12,6 +12,7 @@ type Config struct {
 	DBHost     string
 	DBPort     string
 	DBName     string
+	DBSSLMode  string
 	BindAddr   string
 	LogLevel   string
 }
@@ -27,6 +28,7 @@ func NewConfig() (*Config, error) {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
+	dbSSLMode := os.Getenv("DB_SSLMODE")
 	bindAddr := os.Getenv("BIND_ADDR")
 	logLevel := os.Getenv("LOG_LEVEL")
 
@@ -36,6 +38,7 @@ func NewConfig() (*Config, error) {
 		DBHost:     dbHost,
 		DBPort:     dbPort,
 		DBName:     dbName,
+		DBSSLMode:  dbSSLMode,
 		BindAddr:   bindAddr,
 		LogLevel:   logLevel,
 	}, nil

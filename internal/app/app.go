@@ -10,15 +10,16 @@ import (
 func Start(config *config.Config) error {
 	s := NewServer(config)
 
-	db, err := db.ConnectTestDB()
+	db, err := db.ConnectDB(config)
 	if err != nil {
 		s.logger.Errorf("Database connection error: %v", err)
 	}
+	defer db.Close()
 
 	s.logger.Infof("Starting server on port: %v", config.BindAddr)
 
 	if err := http.ListenAndServe(config.BindAddr, s.router); err != nil {
-		s.logger.Fatalf("error starting server: %v", err)
+		s.logger.Fatalf("Error starting server: %v", err)
 	}
 
 	return nil
